@@ -22,7 +22,7 @@ function App() {
        </Router>  
       </Suspense>    
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
