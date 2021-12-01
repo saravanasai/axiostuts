@@ -5,6 +5,7 @@ import NavBar from './components/NavBar/NavBar';
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import Login from './Pages/Login/Login';
 import Deposite from './Pages/Deposite/Deposite';
+import PrivateRoute from './components/Private/PrivateRoute';
 function App() {
 
   
@@ -15,9 +16,9 @@ function App() {
        <Router >
        <NavBar  />
          <Routes>
-           <Route exact path="/login"element={<Login/>} />
-           <Route  path="/Deposite/:id"element={<Deposite />} />
-           <Route   path="/" element={<CustomerList />} />
+            <Route  exact  path="/" element={<PrivateRoute component={CustomerList} />}/>   
+            <Route  path="/login" element={<Login/>} />
+            <Route  path="/Deposite/:id"element={<PrivateRoute component={Deposite} />} />  
          </Routes>
        </Router>  
       </Suspense>    

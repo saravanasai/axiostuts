@@ -1,6 +1,20 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react/cjs/react.development";
 
 const NavBar = ({heading}) => {
+ 
+
+  const [Auth,setAuth]=useState()
+  
+  useEffect(()=>{
+      setAuth(localStorage.getItem('token'))
+  },[Auth])
+  
+   const handleLogout=()=>{
+      localStorage.removeItem('token')
+      window.location.href="/"
+   }
 
       
     return ( 
@@ -9,12 +23,11 @@ const NavBar = ({heading}) => {
       <button className="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" />
       <div className="collapse navbar-collapse" id="collapsibleNavId">
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li className="nav-item">
+          {(Auth)?<li className="nav-item">
+            <p className="nav-link" onClick={handleLogout} >Logout</p>
+          </li>:<li className="nav-item">
             <Link className="nav-link" to="/login">Login</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/login">Logout</Link>
-          </li> 
+          </li>}  
         </ul>
         <div className="">
         <h2 className="text-white" >{heading}</h2>
